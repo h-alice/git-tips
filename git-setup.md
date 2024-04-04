@@ -179,6 +179,8 @@ We may be asked for the passphrase to unlock the key. Then the subkey will be ex
 
 Transfer the private key to the target machine. *Keep it safe*!
 
+# Git Settings
+Finally we get to the git settings. That should be the easiest part.
 
 
 # Best Practices
