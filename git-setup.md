@@ -128,8 +128,9 @@ The UI may be differ from one service provider to another, but the process is th
 Export the private key by running `gpg --export-secret-subkeys -armor <sub-key-id>`.
     
 ```bash
-gpg --export-secret-subkeys -armor EE833747
+gpg --export-secret-subkeys -armor EE833747!
 ```
+Notice the `!` at the end of the key ID. It's used to indicate the key is a subkey.
 
 We may be asked for the passphrase to unlock the key. Then the subkey will be exported in ASCII format.
 
@@ -183,3 +184,5 @@ Transfer the private key to the target machine. *Keep it safe*!
 - If it still shows the same error, check the key capabilities by running `gpg --edit-key <key-id>`.
 
 - The key should include the `S` capability, indicating it's a signing key.
+
+### Debug the GPG process by test signing.
