@@ -8,6 +8,8 @@ Signing commits with GPG enhances the security, integrity, and trustworthiness o
 
 By providing a means to verify commit authenticity and protect against tampering, GPG signatures play a crucial role in ensuring the reliability and accountability of code repositories.
 
+For more information, check out the "Non-repudiation" in cybersecurity. It's a fun topic!
+
 # Setup GPG
 
 ## Install GPG
