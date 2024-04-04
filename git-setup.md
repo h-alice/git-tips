@@ -48,18 +48,29 @@ uid         [ultimate] Example (For test only) <example@lazylabs.cc>
 ssb   rsa4096/D269A838 2024-04-04 [E]
 ```
 
+In most case, the **master key** already has the capabilities to sign and encrypt. We can just export the public key and add it to the git service provider.
+
+But for best practices, we'll create a **signing subkey** for commit signing.
+
+If the private of **master key** is lost, the whole key pair should be revoked. But if the private of **signing subkey** is lost, only the subkey needs to be revoked.
+
 # Create Signing Key
+
 ## Select Master Key
+
 Locate the master key ID by running `gpg --list-secret-keys --keyid-format SHORT`.
+
 ```bash
 gpg --list-secret-keys --keyid-format SHORT
 ```
+
 ```plaintext
 sec   rsa4096/9CB37AAD 2024-04-04 [SC]
       561DE61782D69B519C1512CB33A39CA69CB37AAD
 uid         [ultimate] Example (For test only) <example@lazylabs.cc>
 ssb   rsa4096/D269A838 2024-04-04 [E]
 ```
+
 The master key ID is `9CB37AAD`.
 
 In the following process, we'll use the master key as example.
