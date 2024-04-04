@@ -1,5 +1,17 @@
+# Introduction
+
+This guide is for setting up GPG for signing commits in Git.
+
+### Why Should I Sign My Commits?
+
+Signing commits with GPG enhances the security, integrity, and trustworthiness of software development workflows. 
+
+By providing a means to verify commit authenticity and protect against tampering, GPG signatures play a crucial role in ensuring the reliability and accountability of code repositories.
+
 # Setup GPG
+
 ## Install GPG
+
 ### MacOS
 
 1. Download and install from [GPG Suite](https://gpgtools.org).
@@ -53,6 +65,8 @@ In most case, the **master key** already has the capabilities to sign and encryp
 But for best practices, we'll create a **signing subkey** for commit signing.
 
 If the private of **master key** is lost, the whole key pair should be revoked. But if the private of **signing subkey** is lost, only the subkey needs to be revoked.
+
+You can also skip to the [Export Key](#export-key) section if you don't want to create a signing subkey.
 
 # Create Signing Key
 
@@ -182,6 +196,55 @@ Transfer the private key to the target machine. *Keep it safe*!
 # Git Settings
 Finally we get to the git settings. That should be the easiest part.
 
+## Git Configuration
+First, the most important part is check if our e-mail address matches the e-mail address in the GPG key.
+
+Or otherwise, the commit will be marked as `Unverified`.
+
+```bash
+git config --get --global user.email 
+```
+
+Set the email address if it's not set.
+
+```bash
+git config --global user.email "<email>"
+```
+
+If the e-mail address is correct, we can move on to the next step.
+
+## Add GPG Path to Git
+Add the GPG path to git by running `git config --global gpg.program gpg`.
+
+It may be different depending on the environment. So the following command may be altered to match our requirements.
+
+```bash
+git config --global gpg.program $(which gpg)
+```
+
+The `$(which gpg)` command is used to get the path of the GPG executable.
+
+The following is an example for Windows, which I used in my environment.
+
+```cmd
+git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+```
+
+## Add Our GPG Key to Git
+Add the GPG key to git by running `git config --global user.signingkey <key_id>`.
+
+```bash
+git config --global user.signingkey EE833747
+```
+
+## Enable Commit Signing
+Enable commit signing by running `git config --global commit.gpgsign true`.
+
+```bash
+git config --global commit.gpgsign true
+```
+
+Now we can try to commit and see if it's signed.
 
 # Best Practices
 - **Master Key**: 
