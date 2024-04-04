@@ -144,6 +144,42 @@ Transfer the private key to the target machine. *Keep it safe*!
     For daily use, we'll use the subkey.
 
 
-```plaintext
 
 # Debug and Troubleshooting
+
+### My commit is marked as `Unverified`!
+
+- Make sure the email address in the commit matches the email address in the GPG key.
+
+- We can check the committer email by running `git log --pretty=format:"%h %ae"`.
+
+- Also check the git config by running `git config --get user.email`.
+    
+- And, most importantly, make sure the GPG key is added to the git service provider.
+
+### I can't even commit!!!
+
+- We can debug the git process by running `GIT_TRACE=1 git commit`.
+
+    Linux-based systems:
+    ```bash
+    GIT_TRACE=1 git commit
+    ```
+
+    Windows:
+    ```cmd
+    set GIT_TRACE=1
+    git commit
+    ```
+
+    Maybe it's not related to GPG at all. 
+    
+    We'll discuss GPG-related issues in the following section.
+
+### It shows 'No secret key' error.
+
+- Make sure the proper key is selscted.
+
+- If it still shows the same error, check the key capabilities by running `gpg --edit-key <key-id>`.
+
+- The key should include the `S` capability, indicating it's a signing key.
