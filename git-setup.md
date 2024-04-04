@@ -18,9 +18,9 @@
     Enter a passphrase to protect the key, it can be skipped but its highly recommended to set a passphrase.
 # Create Signing Key
 ## Select Master Key
-Locate the master key ID by running `gpg --list-secret-keys --keyid-format LONG`.
+Locate the master key ID by running `gpg --list-secret-keys --keyid-format SHORT`.
 ```bash
-gpg --list-secret-keys --keyid-format LONG
+gpg --list-secret-keys --keyid-format SHORT
 ```
 ```plaintext
 sec   rsa4096/9CB37AAD 2024-04-04 [SC]
@@ -93,7 +93,27 @@ After setting the expiration date, we'll be asked for the passphrase.
 
 And finally, the subkey will be created. Use `save` to save the changes and exit.
 
-# Export Public Key
+# Export Key
+
+## Gather Information and Locate Key ID
+
+Locate the key ID by running `gpg --list-secret-keys --keyid-format SHORT`.
+
+```bash
+gpg --list-secret-keys --keyid-format SHORT
+```
+
+```plaintext
+sec   rsa4096/9CB37AAD 2024-04-04 [SC]
+      561DE61782D69B519C1512CB33A39CA69CB37AAD
+uid         [ultimate] Example (For test only) <example@lazylabs.cc>
+ssb   rsa4096/D269A838 2024-04-04 [E]
+ssb   rsa3072/EE833747 2024-04-04 [SE]
+```
+
+The key ID of the subkey we just created is `EE833747`.
+
+## Public Key
 Export the public key by running `gpg --armor --export <master-key-id>`.
     
     ```bash
@@ -103,6 +123,18 @@ Export the public key by running `gpg --armor --export <master-key-id>`.
 We'll get the public key in ASCII format. And add to the git service provider.
 
 The UI may be differ from one service provider to another, but the process is the nearly the same.
+
+## Transfer Private Sub-Key
+Export the private key by running `gpg --export-secret-subkeys -armor <sub-key-id>`.
+    
+```bash
+gpg --export-secret-subkeys -armor EE833747
+```
+
+We may be asked for the passphrase to unlock the key. Then the subkey will be exported in ASCII format.
+
+Transfer the private key to the target machine. *Keep it safe*!
+
 
 
 # Best Practices
