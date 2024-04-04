@@ -186,3 +186,8 @@ Transfer the private key to the target machine. *Keep it safe*!
 - The key should include the `S` capability, indicating it's a signing key.
 
 ### Debug the GPG process by test signing.
+
+
+
+# References
+[\[1\] GitHub Docs](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key)
