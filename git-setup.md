@@ -315,5 +315,13 @@ Now we can try to commit and see if it's signed.
 
 - If everything is correct, we'll get the signature in ASCII format.
 
+# Conclusion
+
+In this guide, we've discussed how to set up GPG for signing commits in Git.
+
+If you find any errors or have any suggestions, feel free to open an issue or pull request.
+
+Thank you for reading so far! : D
+
 # References
 [\[1\] GitHub Docs](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key)
