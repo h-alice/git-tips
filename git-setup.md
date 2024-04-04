@@ -248,6 +248,8 @@ git config --global commit.gpgsign true
 
 Now we can try to commit and see if it's signed.
 
+![Signed Commit](assets/signed-commit.png)
+
 # Best Practices
 - **Master Key**: 
     Keep the master key offline and secure. For example, store it on a USB drive and keep it in a safe place.
