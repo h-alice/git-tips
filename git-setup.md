@@ -187,7 +187,23 @@ Transfer the private key to the target machine. *Keep it safe*!
 
 ### Debug the GPG process by test signing.
 
+- We can debug the GPG process by running `gpg -bsau <key-id>`.
 
+    - The `-b` flag is used to create a detached signature.
+
+    - The `-s` flag is used to sign the data.
+
+    - The `-a` flag is used to create an ASCII-armored output.
+
+    - The `-u` flag is used to specify the key ID, followed by the key ID we want to use.
+
+    ```bash
+    gpg -bsau EE833747
+    ```
+
+- Then we can enter whatever text we want to sign. Then use `Ctrl+D` to finish the input.
+
+- If everything is correct, we'll get the signature in ASCII format.
 
 # References
 [\[1\] GitHub Docs](https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key)
